@@ -217,7 +217,7 @@ def process_recording(filename):
 
 def play_audio(file):
     logger.info("Reminder wird abgespielt.")
-    os.system(f"/usr/bin/aplay -D plughw:0 -f S16_LE -r 16000 -c 1 {file}")
+    os.system(f"/usr/bin/aplay -D 'plughw:sndrpihifiberry' -f S16_LE -r 16000 -c 1 {file}")
 
 def distance_loop():
     global last_activity_time, reflection_prompt_played
