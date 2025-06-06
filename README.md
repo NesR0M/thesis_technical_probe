@@ -19,8 +19,8 @@ source venv/bin/activate
 pip install openai
 pip install elevenlabs
 pip install python-dotenv
-pip install RPi.GPIO
 pip install sdnotify
+(pip install RPi.GPIO)
 ```
 
 ---
