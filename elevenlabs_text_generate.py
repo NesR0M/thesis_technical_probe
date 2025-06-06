@@ -10,7 +10,7 @@ api_key = os.getenv("ELEVENLABS_API_KEY")
 client = ElevenLabs(api_key=api_key)
 
 # Your custom startup message
-text = "Bitte nimm dir kurz einen Moment: Welcher Aktivität möchtest du nach der Smartphone-Nutzung nachgehen?"
+text = "Please take a moment: What activity would you like to engage in after using your smartphone?"
 
 # Generate speech
 audio = client.text_to_speech.convert(

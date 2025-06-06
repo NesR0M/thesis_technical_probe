@@ -1,0 +1,74 @@
+2025-06-02 15:43:25,467 - Phone out Box: 1748871790.5585337; Dauer: 14.90s; Ende: 1748871805.4608233
+2025-06-02 15:43:36,809 - Phone in Box: 1748871805.4608233; Dauer: 11.35s; Ende: 1748871816.809401
+2025-06-02 15:43:41,105 - Phone out Box: 1748871816.809401; Dauer: 4.30s; Ende: 1748871821.1050627
+2025-06-02 15:44:13,458 - Phone in Box: 1748871821.1050627; Dauer: 32.22s; Ende: 1748871853.3228278
+2025-06-02 15:44:14,700 - Phone out Box: 1748871853.3228278; Dauer: 1.38s; Ende: 1748871854.6999552
+2025-06-02 15:45:46,179 - Phone in Box: 1748871854.6999552; Dauer: 91.40s; Ende: 1748871946.1013162
+2025-06-02 15:46:03,541 - Phone out Box: 1748871946.1013162; Dauer: 17.43s; Ende: 1748871963.5271366
+2025-06-02 15:46:04,639 - Phone in Box: 1748871963.5271366; Dauer: 1.11s; Ende: 1748871964.6397927
+2025-06-02 15:50:08,870 - Phone out Box: 1748872147.537715; Dauer: 61.32s; Ende: 1748872208.8534992
+2025-06-02 15:50:10,162 - Phone in Box: 1748872208.8534992; Dauer: 1.31s; Ende: 1748872210.1624436
+2025-06-02 15:50:49,036 - Phone out Box: 1748872210.1624436; Dauer: 38.87s; Ende: 1748872249.0358732
+2025-06-02 15:50:50,099 - Phone in Box: 1748872249.0358732; Dauer: 1.06s; Ende: 1748872250.0990448
+2025-06-02 15:51:06,922 - Transkription: Ich würde gerne einen Hund streicheln.
+2025-06-02 15:51:13,959 - GPT-4: Hallo, ich sehe, dass Sie immer noch Ihr Telefon benutzen. Stellen Sie sich vor, wie sich das weiche Fell des Hundes unter Ihren Händen anfühlt - wie würden Sie gerne damit beginnen?
+2025-06-02 15:56:48,958 - Phone out Box: 1748872250.0990448; Dauer: 358.85s; Ende: 1748872608.9474049
+2025-06-02 15:56:50,046 - Phone in Box: 1748872608.9474049; Dauer: 1.10s; Ende: 1748872610.0461502
+2025-06-02 15:59:00,647 - Phone out Box: 1748872610.0461502; Dauer: 130.59s; Ende: 1748872740.6351402
+2025-06-02 15:59:01,772 - Phone in Box: 1748872740.6351402; Dauer: 1.14s; Ende: 1748872741.772833
+2025-06-02 16:01:00,326 - Phone out Box: 1748872741.772833; Dauer: 118.54s; Ende: 1748872860.3168378
+2025-06-02 16:01:01,458 - Phone in Box: 1748872860.3168378; Dauer: 1.14s; Ende: 1748872861.4588356
+2025-06-02 16:01:22,130 - Phone out Box: 1748872861.4588356; Dauer: 20.67s; Ende: 1748872882.1301646
+2025-06-02 16:01:23,194 - Phone in Box: 1748872882.1301646; Dauer: 1.06s; Ende: 1748872883.193877
+2025-06-02 16:01:49,883 - Phone out Box: 1748872883.193877; Dauer: 26.68s; Ende: 1748872909.871259
+2025-06-02 16:01:50,997 - Phone in Box: 1748872909.871259; Dauer: 1.13s; Ende: 1748872910.997517
+2025-06-02 16:05:53,490 - Phone out Box: 1748872910.997517; Dauer: 242.48s; Ende: 1748873153.4813638
+2025-06-02 16:05:54,606 - Phone in Box: 1748873153.4813638; Dauer: 1.12s; Ende: 1748873154.6058748
+2025-06-02 16:07:45,586 - Transkription: Für eine andere Sache, ich würde gerne meine Teller waschen.
+2025-06-02 16:07:49,684 - GPT-4: Hallo, ich habe bemerkt, dass dein Handy immer noch dabei ist. Stell dir vor, wie schön es sein wird, saubere und glänzende Teller zu haben - wo würdest du anfangen?
+2025-06-02 16:09:01,148 - Phone out Box: 1748873154.6058748; Dauer: 186.53s; Ende: 1748873341.136905
+2025-06-02 16:09:02,285 - Phone in Box: 1748873341.136905; Dauer: 1.15s; Ende: 1748873342.285387
+2025-06-02 16:10:25,155 - Phone out Box: 1748873342.285387; Dauer: 82.86s; Ende: 1748873425.1425378
+2025-06-02 16:10:26,276 - Phone in Box: 1748873425.1425378; Dauer: 1.13s; Ende: 1748873426.27675
+2025-06-02 16:11:01,380 - Phone out Box: 1748873426.27675; Dauer: 35.09s; Ende: 1748873461.3643737
+2025-06-02 16:11:02,578 - Phone in Box: 1748873461.3643737; Dauer: 1.21s; Ende: 1748873462.5786474
+2025-06-02 16:14:18,852 - Phone out Box: 1748873462.5786474; Dauer: 196.26s; Ende: 1748873658.8412535
+2025-06-02 16:14:20,032 - Phone in Box: 1748873658.8412535; Dauer: 1.19s; Ende: 1748873660.0325403
+2025-06-02 16:19:54,993 - Phone out Box: 1748873660.0325403; Dauer: 334.94s; Ende: 1748873994.9761052
+2025-06-02 16:19:56,161 - Phone in Box: 1748873994.9761052; Dauer: 1.18s; Ende: 1748873996.1610126
+2025-06-02 16:21:02,680 - Phone out Box: 1748873996.1610126; Dauer: 66.51s; Ende: 1748874062.671939
+2025-06-02 16:21:03,804 - Phone in Box: 1748874062.671939; Dauer: 1.13s; Ende: 1748874063.8041973
+2025-06-02 16:22:30,130 - Phone out Box: 1748874063.8041973; Dauer: 86.31s; Ende: 1748874150.110493
+2025-06-02 16:22:31,413 - Phone in Box: 1748874150.110493; Dauer: 1.30s; Ende: 1748874151.4129803
+2025-06-02 16:23:21,622 - Phone out Box: 1748874151.4129803; Dauer: 49.98s; Ende: 1748874201.3946342
+2025-06-02 16:23:23,259 - Phone in Box: 1748874201.3946342; Dauer: 1.86s; Ende: 1748874203.2592192
+2025-06-02 16:24:14,333 - Phone out Box: 1748874203.2592192; Dauer: 51.06s; Ende: 1748874254.3183002
+2025-06-02 16:24:15,540 - Phone in Box: 1748874254.3183002; Dauer: 1.22s; Ende: 1748874255.540409
+2025-06-02 16:36:49,073 - Phone in Box: 1748874984.935076; Dauer: 23.63s; Ende: 1748875008.566234
+2025-06-02 16:37:06,755 - Phone out Box: 1748875008.566234; Dauer: 18.19s; Ende: 1748875026.7544336
+2025-06-02 16:37:20,140 - Phone in Box: 1748875026.7544336; Dauer: 13.39s; Ende: 1748875040.1395898
+2025-06-02 16:38:05,196 - Phone out Box: 1748875040.1395898; Dauer: 45.05s; Ende: 1748875085.1925414
+2025-06-02 16:38:12,571 - Transkription: Hund streicheln.
+2025-06-02 16:38:17,033 - GPT-4: Hallo, ich sehe, dass dein Handy immer noch in der Hand ist. Stell dir vor, wie es sich anfühlt, dem Hund zu streicheln und seine Freude daran zu sehen - wann möchtest du das tun?
+2025-06-02 16:38:38,397 - Phone in Box: 1748875085.1925414; Dauer: 33.20s; Ende: 1748875118.3905756
+2025-06-02 16:39:47,599 - Phone out Box: 1748875118.3905756; Dauer: 68.90s; Ende: 1748875187.2886806
+2025-06-02 16:40:09,838 - Transkription: mein Geschirr abspülen.
+2025-06-02 16:40:12,778 - GPT-4: Hallo, ich sehe, dass dein Handy noch an ist. Stell dir vor, wie beruhigend es sein wird, ein sauberes, glänzendes Geschirr zu haben - wo würdest du gerne anfangen?
+2025-06-02 16:47:34,112 - Phone in Box: 1748875643.6310537; Dauer: 10.37s; Ende: 1748875653.9981067
+2025-06-02 16:47:42,247 - Phone out Box: 1748875653.9981067; Dauer: 8.25s; Ende: 1748875662.2464535
+2025-06-02 16:47:48,434 - Phone in Box: 1748875662.2464535; Dauer: 6.19s; Ende: 1748875668.4333065
+2025-06-02 16:47:55,638 - Phone out Box: 1748875668.4333065; Dauer: 7.20s; Ende: 1748875675.6379404
+2025-06-02 16:52:04,725 - Phone in Box: 1748875675.6379404; Dauer: 249.06s; Ende: 1748875924.7027466
+2025-06-03 14:16:32,054 - Phone in Box: 1748952974.5896046; Dauer: 17.46s; Ende: 1748952992.053996
+2025-06-03 14:16:44,992 - Transkription: und sagst dann, ich würde gerne das Geschirr abspülen.
+2025-06-03 14:16:47,481 - GPT-4: Hallo, ich sehe, dass dein Handy immer noch griffbereit ist. Stell dir doch mal vor, wie befriedigend es sein wird, eine blitzsaubere Küche zu sehen - mit welchem Teil des Geschirrs würdest du anfangen?
+2025-06-03 14:16:50,854 - Phone out Box: 1748952992.053996; Dauer: 18.80s; Ende: 1748953010.8542507
+2025-06-03 14:16:56,020 - Phone in Box: 1748953010.8542507; Dauer: 5.17s; Ende: 1748953016.020027
+2025-06-03 14:18:39,685 - Phone out Box: 1748953016.020027; Dauer: 103.66s; Ende: 1748953119.6833072
+2025-06-06 11:44:03,714 - Transkription: Ich möchte einen Hund streicheln.
+2025-06-06 11:44:07,740 - GPT-4: Hallo, ich sehe, dein Handy ist immer noch dabei. Stell dir vor, wie sich das weiche Fell des Hundes unter deinen Händen anfühlt - ist das nicht ein schöner Gedanke?
+2025-06-06 11:51:11,099 - Transkription: .
+2025-06-06 11:51:14,355 - GPT-4: Hey, I noticed you're still on your phone. Imagine the soft feeling of the pages in your hands as you dive into that book you planned to read - what chapter will you start with?
+2025-06-06 11:51:47,578 - Transkription: pet a dog a very big and fluffy one
+2025-06-06 11:51:51,678 - GPT-4: Hey, looks like your phone is still in your hand. Can you imagine how soft and warm that big, fluffy dog will feel under your hand - where would you love to pet him first?
+2025-06-06 11:53:44,368 - Phone in Box: 1749203621.124496; Dauer: 3.09s; Ende: 1749203624.213024

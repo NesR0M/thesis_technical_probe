@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import signal
 import time
@@ -23,7 +24,7 @@ ECHO = 17
 BUTTON_GPIO = 22
 DISTANCE_THRESHOLD = 10
 DELAY_SECONDS = 12 * 60  # Zeit bis Erinnerung
-CANCEL_SECONDS = 60       # Unterbrechung erlaubt
+CANCEL_SECONDS = 180       # Unterbrechung erlaubt
 RECORD_SECONDS = 20
 FILENAME = "aufnahme.wav"
 AUDIO_OUTPUT = "response.wav"
@@ -35,6 +36,17 @@ logger.setLevel(logging.DEBUG)
 # Datei-Log
 file_handler = RotatingFileHandler("probe.log", maxBytes=1000000, backupCount=3)
 logger.addHandler(file_handler)
+
+
+# Zusätzlicher Logger für Study-Einträge
+study_logger = logging.getLogger("StudyLogger")
+study_logger.setLevel(logging.INFO)
+
+study_handler = RotatingFileHandler("study.log", maxBytes=1000000, backupCount=10)
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+
+study_handler.setFormatter(formatter)
+study_logger.addHandler(study_handler)
 
 # → Neu: stdout-Log
 console_handler = logging.StreamHandler()
@@ -83,6 +95,22 @@ def retry(func, max_retries=2, delay=2, exceptions=(Exception,)):
                 raise
 
 # -------------------- Funktionen --------------------
+
+def find_recording_device(name_hint="USB PnP Sound Device"):
+    try:
+        output = subprocess.check_output(["/usr/bin/arecord", "-l"], text=True)
+        # Suche Zeile mit passendem Gerätenamen
+        for line in output.splitlines():
+            if name_hint in line:
+                match = re.search(r"card (\d+):.*device (\d+):", line)
+                if match:
+                    card_index = match.group(1)
+                    device_index = match.group(2)
+                    return f"plughw:{card_index},{device_index}"
+    except Exception as e:
+        logger.warning("Konnte Aufnahmegerät nicht finden: %s", e)
+    return "plughw:0,0"  # fallback
+
 def measure_distance():
     global last_activity_time
     try:
@@ -122,7 +150,7 @@ def start_recording():
     last_activity_time = recording_start_time
     try:
         recording_process = subprocess.Popen([
-            "/usr/bin/arecord", "-D", "plughw:1",
+            "/usr/bin/arecord", "-D", find_recording_device(),
             "-f", "cd", "-t", "wav",
             "-r", "16000", "-d", str(RECORD_SECONDS), FILENAME
         ])
@@ -165,6 +193,7 @@ def stop_recording():
         return
 
     logger.info(f"Gespeichert: {FILENAME} ({duration:.2f}s)")
+    play_audio("sounds/feedback_fast.wav")
     safe_thread(process_recording, FILENAME)
 
 
@@ -181,6 +210,7 @@ def process_recording(filename):
             whisper_resp = retry(do_transcribe)
             transkription = whisper_resp.text
             logger.info("Transkription: %s", transkription)
+            study_logger.info("Transkription: %s", transkription)
 
             logger.info("Sende an GPT-4...")
             def do_chat():
@@ -195,6 +225,7 @@ def process_recording(filename):
             antwort = chat_resp.choices[0].message.content
             latest_text_prompt = antwort
             logger.info("GPT-4: %s", antwort)
+            study_logger.info("GPT-4: %s", antwort)
 
             logger.info("Erzeuge Sprachausgabe...")
             def do_tts():
@@ -223,7 +254,14 @@ def distance_loop():
     global last_activity_time, reflection_prompt_played
     reminder_timer_started = False
     reminder_start_time = None
-    pause_start_time = None
+    inbox_start_time = None
+    outbox_start_time = None
+        
+    # Neue Variablen für Stabilitätslogik
+    box_state = "out"               # Aktueller stabiler Zustand: "in" oder "out"
+    pending_state = "out"           # Neuer potenzieller Zustand
+    pending_state_start = time.time()     # Zeit, seit der dieser potenzielle Zustand anhält
+    STABILITY_SECONDS = 2          # Schwelle für stabile Änderung
 
     while True:
         try:
@@ -231,43 +269,64 @@ def distance_loop():
             dist = measure_distance()
             logger.info(f"Distance: {dist:.1f} cm")
 
-            if dist > DISTANCE_THRESHOLD:
+            current_raw_state = "out" if dist > DISTANCE_THRESHOLD else "in"
+            now = time.time()
+
+            # Wenn Zustand wechselt, aber noch nicht lange genug
+            if current_raw_state != box_state:
+                if pending_state != current_raw_state:
+                    pending_state = current_raw_state
+                    pending_state_start = now
+                elif now - pending_state_start >= STABILITY_SECONDS:
+                    # Zustand ist jetzt stabil → übernehmen
+                    box_state = pending_state
+                    if box_state == "in":
+                        logger.info("Handy ist in Box.")
+                        inbox_start_time = now
+                        if outbox_start_time:
+                            study_logger.info(f"Phone out Box: {outbox_start_time}; Dauer: {inbox_start_time - outbox_start_time:.2f}s; Ende: {inbox_start_time}")
+                            outbox_start_time = None
+                    else:
+                        logger.info("Kein Handy in Box.")
+                        outbox_start_time = now
+                        if inbox_start_time:
+                            study_logger.info(f"Phone in Box: {inbox_start_time}; Dauer: {outbox_start_time - inbox_start_time:.2f}s; Ende: {outbox_start_time}")
+                            inbox_start_time = None
+            else:
+                pending_state = None
+                pending_state_start = None
+
+            # Reminder-Logik wie gehabt
+            if box_state == "out":
                 if not reminder_timer_started:
-                    logger.info("Bitte Aufnahme starten")
-                    
                     if not reflection_prompt_played:
                         play_audio("pickup.wav")
+                        logger.info("Bitte Aufnahme starten")
                         reflection_prompt_played = True
 
                     if latest_audio_file:
-                        reminder_start_time = time.time()
+                        reminder_start_time = now
                         reminder_timer_started = True
                         logger.info("Reminder-Timer gestartet.")
                 elif reminder_timer_started:
-                    elapsed = time.time() - reminder_start_time
+                    elapsed = now - reminder_start_time
                     logger.info(f"Reminder läuft seit {int(elapsed)} Sekunden")
                     if elapsed >= DELAY_SECONDS:
                         safe_thread(play_audio, latest_audio_file)
                         reminder_timer_started = False 
                         reminder_start_time = None
-                        logger.info("Reminder-Timer zurückgesetzt.")
-                pause_start_time = None
-            else:
-                if reminder_timer_started:
-                    if not pause_start_time:
-                        pause_start_time = time.time()
-                        logger.info("Handy erkannt – Timer pausiert.")
-                    else:
-                        paused_elapsed = time.time() - pause_start_time
-                        logger.info(f"Handy liegt seit {int(paused_elapsed)}s wieder im Kasten")
-                        if paused_elapsed >= CANCEL_SECONDS:
-                            logger.info("Reminder abgebrochen – Handy wurde zurückgelegt.")
+                        logger.info("Reminder wird abgespielt und zurückgesetzt.")
+            elif box_state == "in":
+                if inbox_start_time:
+                    inbox_duration = now - inbox_start_time
+                    logger.info(f"Handy liegt seit {int(inbox_duration)}s im Kasten")
+                    if inbox_duration >= CANCEL_SECONDS:
+                        if reminder_timer_started:
+                            logger.info("Reminder abgebrochen.")
                             reminder_timer_started = False
                             reminder_start_time = None
-                            pause_start_time = None
-                            reflection_prompt_played = False
-                else:
-                    pause_start_time = None
+                        logger.info("reflextion notification active.")  
+                        reflection_prompt_played = False
 
             time.sleep(1)
 
