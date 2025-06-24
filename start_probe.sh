@@ -5,7 +5,7 @@ cd /home/morsen/thesis
 
 # Git Pull für Updates
 echo "[Updater] Versuche git pull..."
-git pull
+/usr/bin/git pull
 
 # Python-Code starten (z. B. in venv)
 echo "[Starter] Starte Python-Skript..."

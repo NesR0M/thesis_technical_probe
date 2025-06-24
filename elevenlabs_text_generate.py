@@ -10,7 +10,7 @@ api_key = os.getenv("ELEVENLABS_API_KEY")
 client = ElevenLabs(api_key=api_key)
 
 # Your custom startup message
-text = "Please take a moment: What activity would you like to engage in after using your smartphone?"
+text = "The device is shutting down."
 
 # Generate speech
 audio = client.text_to_speech.convert(
@@ -21,8 +21,8 @@ audio = client.text_to_speech.convert(
 )
 
 # Save to pickup.wav
-with open("pickup.wav", "wb") as f:
+with open("stop.wav", "wb") as f:
     for chunk in audio:
         f.write(chunk)
 
-print("pickup.wav created successfully.")
+print("stop.wav created successfully.")
