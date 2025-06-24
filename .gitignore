@@ -2,4 +2,7 @@ venv/
 __pycache__/
 *.pyc
 probe.log
+probe.log.*
+study.log
+study.log.*
 .env
