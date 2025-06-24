@@ -20,7 +20,8 @@ pip install openai
 pip install elevenlabs
 pip install python-dotenv
 pip install sdnotify
-(pip install RPi.GPIO)
+# Optional, falls nicht schon systemweit installiert:
+pip install RPi.GPIO
 ```
 
 ---
@@ -53,8 +54,9 @@ After=network.target sound.target
 
 [Service]
 WorkingDirectory=/home/morsen/thesis
-ExecStart=/home/morsen/thesis/venv/bin/python /home/morsen/thesis/probe.py
+ExecStart=/home/morsen/thesis/start_probe.sh
 Environment="PATH=/home/morsen/thesis/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
 Restart=always
 RestartSec=10
 WatchdogSec=30s
@@ -80,14 +82,14 @@ sudo systemctl start probe.service
 
 ## 🛠️ Helpful Commands
 
-| Aktion                        | Befehl                                           |
-|------------------------------|--------------------------------------------------|
-| Service starten              | `sudo systemctl start probe.service`            |
-| Service stoppen              | `sudo systemctl stop probe.service`             |
-| Service beim Boot aktivieren| `sudo systemctl enable probe.service`           |
+| Aktion                         | Befehl                                         |
+|-------------------------------|------------------------------------------------|
+| Service starten               | `sudo systemctl start probe.service`          |
+| Service stoppen               | `sudo systemctl stop probe.service`           |
+| Service beim Boot aktivieren | `sudo systemctl enable probe.service`         |
 | Service beim Boot deaktivieren| `sudo systemctl disable probe.service`        |
-| Status anzeigen              | `sudo systemctl status probe.service`           |
-| Logs live anzeigen           | `journalctl -u probe.service -f`                |
+| Status anzeigen               | `sudo systemctl status probe.service`         |
+| Logs live anzeigen            | `journalctl -u probe.service -f`              |
 
 ---
 
@@ -111,3 +113,49 @@ source venv/bin/activate
 ```
 
 ---
+
+## 🧾 Logging Setup
+
+### 1. Create Log Directory
+
+```bash
+sudo mkdir -p /var/log/probe
+```
+
+### 2. Set Ownership to Your User
+
+```bash
+sudo chown morsen:morsen /var/log/probe
+```
+
+Make sure your Python logging writes to this path (e.g., `/var/log/probe/probe.log`).
+
+---
+
+## 🚀 Create Start Script
+
+Create a script to auto-update and launch your prototype:
+
+`~/thesis/start_probe.sh`
+
+```bash
+#!/bin/bash
+
+# Switch to project directory
+cd /home/morsen/thesis
+
+# Pull latest version
+echo "[Updater] Versuche git pull..."
+git pull
+
+# Activate virtual environment and start script
+echo "[Starter] Starte Python-Skript..."
+source venv/bin/activate
+python3 probe.py
+```
+
+Make it executable:
+
+```bash
+chmod +x ~/thesis/start_probe.sh
+```
