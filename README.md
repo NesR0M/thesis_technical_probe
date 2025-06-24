@@ -31,7 +31,7 @@ pip install RPi.GPIO
 
 ## 🔐 Set API Keys
 
-Create a `.env` file in the project directory and add your API keys:
+Create a `.env` file (e.g.: cp .env.example .env) in the project directory and add your API keys:
 
 ```env
 OPENAI_API_KEY=your_key_here
