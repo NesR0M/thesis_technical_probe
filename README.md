@@ -117,6 +117,8 @@ WatchdogSec=60s
 NotifyAccess=all
 StandardOutput=journal
 StandardError=journal
+User=morsen
+
 
 [Install]
 WantedBy=multi-user.target
