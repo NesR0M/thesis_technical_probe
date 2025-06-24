@@ -16,6 +16,9 @@ source venv/bin/activate
 ## 📦 Install Required Python Packages
 
 ```bash
+pip install -r requirements.txt
+
+# or install them manually with:
 pip install openai
 pip install elevenlabs
 pip install python-dotenv
