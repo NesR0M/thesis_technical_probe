@@ -37,6 +37,60 @@ ELEVENLABS_API_KEY=your_key_here
 
 ---
 
+## 🧾 Logging Setup
+
+### 1. Create Log Directory
+
+```bash
+sudo mkdir -p /var/log/probe
+```
+
+### 2. Set Ownership to Your User
+
+```bash
+sudo chown morsen:morsen /var/log/probe
+```
+
+Make sure your Python logging writes to this path (e.g., `/var/log/probe/probe.log`).
+
+---
+
+## ⚙️ Enable GitHub ownership in respository
+git config --global --add safe.directory /home/morsen/thesis
+
+---
+
+## 🚀 Create Start Script
+
+Create a script to auto-update and launch your prototype:
+
+`~/thesis/start_probe.sh`
+
+```bash
+#!/bin/bash
+
+# Switch to project directory
+cd /home/morsen/thesis
+
+# Pull latest version
+echo "[Updater] Versuche git pull..."
+/usr/bin/git pull
+
+# Activate virtual environment and start script
+echo "[Starter] Starte Python-Skript..."
+source venv/bin/activate
+python3 probe.py
+```
+
+Make it executable:
+
+```bash
+chmod +x ~/thesis/start_probe.sh
+```
+
+---
+
+
 ## ⚙️ Systemd Service Setup
 
 Create a service file:
@@ -59,7 +113,7 @@ Environment="PATH=/home/morsen/thesis/venv/bin"
 Environment="PYTHONUNBUFFERED=1"
 Restart=always
 RestartSec=10
-WatchdogSec=30s
+WatchdogSec=60s
 NotifyAccess=all
 StandardOutput=journal
 StandardError=journal
@@ -112,50 +166,4 @@ Always activate your virtual environment before testing manually:
 source venv/bin/activate
 ```
 
----
 
-## 🧾 Logging Setup
-
-### 1. Create Log Directory
-
-```bash
-sudo mkdir -p /var/log/probe
-```
-
-### 2. Set Ownership to Your User
-
-```bash
-sudo chown morsen:morsen /var/log/probe
-```
-
-Make sure your Python logging writes to this path (e.g., `/var/log/probe/probe.log`).
-
----
-
-## 🚀 Create Start Script
-
-Create a script to auto-update and launch your prototype:
-
-`~/thesis/start_probe.sh`
-
-```bash
-#!/bin/bash
-
-# Switch to project directory
-cd /home/morsen/thesis
-
-# Pull latest version
-echo "[Updater] Versuche git pull..."
-git pull
-
-# Activate virtual environment and start script
-echo "[Starter] Starte Python-Skript..."
-source venv/bin/activate
-python3 probe.py
-```
-
-Make it executable:
-
-```bash
-chmod +x ~/thesis/start_probe.sh
-```
