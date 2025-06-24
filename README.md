@@ -167,7 +167,7 @@ nmcli connection add type wifi con-name "ParticipantWiFi" ifname wlan0 ssid "Par
 nmcli connection modify "ParticipantWiFi" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "ParticipantPassword"
 ```
 
-# Optionally make it autoconnect:
+Optionally make it autoconnect:
 
 ```bash
 nmcli connection modify "ParticipantWiFi" connection.autoconnect yes
