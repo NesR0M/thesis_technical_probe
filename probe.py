@@ -34,7 +34,7 @@ logger = logging.getLogger("ProbeLogger")
 logger.setLevel(logging.DEBUG)
 
 # Datei-Log
-file_handler = RotatingFileHandler("probe.log", maxBytes=1000000, backupCount=3)
+file_handler = RotatingFileHandler("/var/log/probe/probe.log", maxBytes=1000000, backupCount=3)
 logger.addHandler(file_handler)
 
 
@@ -42,7 +42,7 @@ logger.addHandler(file_handler)
 study_logger = logging.getLogger("StudyLogger")
 study_logger.setLevel(logging.INFO)
 
-study_handler = RotatingFileHandler("study.log", maxBytes=1000000, backupCount=10)
+study_handler = RotatingFileHandler("/var/log/probe/study.log", maxBytes=1000000, backupCount=10)
 formatter = logging.Formatter('%(asctime)s - %(message)s')
 
 study_handler.setFormatter(formatter)
