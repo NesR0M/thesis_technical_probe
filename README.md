@@ -160,4 +160,17 @@ Make it executable:
 chmod +x ~/thesis/start_probe.sh
 ```
 
+## Optional: Save Wifi connection manually:
+
+```bash
+nmcli connection add type wifi con-name "ParticipantWiFi" ifname wlan0 ssid "ParticipantWiFi"
+nmcli connection modify "ParticipantWiFi" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "ParticipantPassword"
+```
+
+# Optionally make it autoconnect:
+
+```bash
+nmcli connection modify "ParticipantWiFi" connection.autoconnect yes
+```
+✅ This config is saved and will try to connect as soon as the SSID is in range.
 
