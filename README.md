@@ -91,6 +91,27 @@ WantedBy=multi-user.target
 
 ---
 
+## Enable I2S audio output (e.g. for use with MAX98357A or HiFiBerry DAC):
+
+1. Open the configuration file:
+ ```bash
+ sudo nano /boot/firmware/config.txt
+ ```
+2. Add or modify the following lines:
+
+```ini
+# Disable onboard audio (optional if you're using I2S exclusively)
+# dtparam=audio=on
+
+# Enable I2S and the HiFiBerry DAC overlay
+dtoverlay=hifiberry-dac
+dtparam=i2s=on
+```
+3. Save and exit the file (Ctrl+O, Enter, then Ctrl+X)
+
+4. Reboot the system.
+
+
 ## ▶️ Start the Service
 
 ```bash
