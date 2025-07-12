@@ -198,3 +198,16 @@ nmcli connection modify "ParticipantWiFi" connection.autoconnect yes
 ```
 ✅ This config is saved and will try to connect as soon as the SSID is in range.
 
+## Optional: Clean .log files manually: 
+
+```bash
+sudo truncate -s 0 /var/log/probe/probe.log*
+```
+
+Remove log files:
+
+``` bash
+sudo rm /var/log/probe/probe.log*
+```
+
+
